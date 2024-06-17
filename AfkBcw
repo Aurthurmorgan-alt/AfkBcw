@@ -8,6 +8,7 @@ local Whatplayer = game.Players.LocalPlayer
 local biomeData = {
     [17404478111] = {name = "Blizzard", waterColor = "Baby blue"},
     [17189708235] = {name = "Normal", waterColor = "Cyan"},
+    [17189703099] = {name = "Weird Normal", waterColor = "Cyan"},
     [17189701971] = {name = "Radiation", waterColor = "Really black"},
     [9064172942] = {name = "Starry", waterColor = "Electric blue"}, 
     [17189699594] = {name = "Flame", waterColor = "Neon orange"},
@@ -55,7 +56,7 @@ function detectBiome()
         for id, biomeInfo in pairs(biomeData) do
             if tostring(musicId) == tostring(id) then
                 if waterColor == biomeInfo.waterColor then
-                    if biomeInfo.name == "Normal" then
+                    if biomeInfo.name == "Normal" or biomeInfo.name == "Weird Normal" then
                         if WhatSky then
                             if normalSky then
                                 sendDiscordMessage(Whatplayer.Name .. " Got: Normal Biome")
