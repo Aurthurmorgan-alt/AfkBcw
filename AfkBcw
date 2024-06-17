@@ -58,7 +58,7 @@ function detectBiome()
                     if biomeInfo.name == "Normal" then
                         if WhatSky then
                             if normalSky then
-                                sendDiscordMessage("Normal Biome")
+                                sendDiscordMessage(Whatplayer.Name .. " Got: Normal Biome")
                                 return
                             end
                         else
@@ -66,7 +66,7 @@ function detectBiome()
                             game.Players.LocalPlayer:Kick("rejoin")
                         end
                     else
-                        sendDiscordMessage("Biome: " .. biomeInfo.name .. " leaving")
+                        sendDiscordMessage(Whatplayer.Name .. "Got: " .. biomeInfo.name .. " leaving")
                         game.Players.LocalPlayer:Kick("rejoin")
                         return
                     end
@@ -81,7 +81,7 @@ function detectBiome()
         for _, boss in ipairs(BiomeBosses) do
             local boss = game:GetService("Workspace"):FindFirstChild(boss)
             if boss then
-                sendDiscordMessage("Found Boss: " .. boss.Name .. " leaving")
+                sendDiscordMessage(Whatplayer.Name .. " Found Boss: " .. boss.Name .. " leaving")
                 game.Players.LocalPlayer:Kick("rejoin")
                 return
             end
@@ -97,7 +97,7 @@ while true do
     for _, boss in ipairs(BiomeBosses) do
         local boss = game:GetService("Workspace"):FindFirstChild(boss)
         if boss then
-            sendDiscordMessage("Found Boss: " .. boss.Name .. " leaving")
+            sendDiscordMessage(Whatplayer.Name .. " Found Boss: " .. boss.Name .. " leaving")
             game.Players.LocalPlayer:Kick("\nRejoining...")
         end
     end
