@@ -71,6 +71,7 @@ function detectBiome()
                         if WhatSky then
                             if normalSky then
                                 sendDiscordMessage(Whatplayer.Name .. ":🌍")
+                                doublecheck = 0
                                 return
                             end
                         else
@@ -87,8 +88,11 @@ function detectBiome()
         end
         doublecheck = doublecheck + 1
         if (doublecheck >= 2) then
-            sendDiscordMessage("Rare Biome:" .. Whatplayer.Name .. " Color: " .. waterColor .. " @here")
-            wait(120)
+            if (doublecheck == 2) then
+                sendDiscordMessage("Rare Biome:" .. Whatplayer.Name .. " Color: " .. waterColor .. " @here")
+            else
+                sendDiscordMessage("Whatplayer.Name .. " IS STILL IN A RARE BIOME Color: " .. waterColor)
+            end
         else
             sendDiscordMessage(Whatplayer.Name .. "Might have found a rare biome rechecking" .. waterColor)
         end
