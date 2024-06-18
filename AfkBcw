@@ -64,11 +64,11 @@ function detectBiome()
                             end
                         else
                             sendDiscordMessage("Night Biome leaving")
-                            game.Players.LocalPlayer:Kick("rejoin")
+                            game:Shutdown()
                         end
                     else
                         sendDiscordMessage(Whatplayer.Name .. " Got: " .. biomeInfo.name .. " leaving")
-                        game.Players.LocalPlayer:Kick("rejoin")
+                        game:Shutdown()
                         return
                     end
                 end
@@ -83,7 +83,7 @@ function detectBiome()
             local boss = game:GetService("Workspace"):FindFirstChild(boss)
             if boss then
                 sendDiscordMessage(Whatplayer.Name .. " Found Boss: " .. boss.Name .. " leaving")
-                game.Players.LocalPlayer:Kick("rejoin")
+                game:Shutdown()
                 return
             end
         end
@@ -99,7 +99,7 @@ while true do
         local boss = game:GetService("Workspace"):FindFirstChild(boss)
         if boss then
             sendDiscordMessage(Whatplayer.Name .. " Found Boss: " .. boss.Name .. " leaving")
-            game.Players.LocalPlayer:Kick("\nRejoining...")
+            game:Shutdown()
         end
     end
     wait(3)
