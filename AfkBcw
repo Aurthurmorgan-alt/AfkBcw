@@ -91,7 +91,7 @@ function detectBiome()
             if (doublecheck == 2) then
                 sendDiscordMessage("Rare Biome:" .. Whatplayer.Name .. " Color: " .. waterColor .. " @here")
             else
-                sendDiscordMessage("Whatplayer.Name .. " IS STILL IN A RARE BIOME Color: " .. waterColor)
+                sendDiscordMessage(Whatplayer.Name .. " IS STILL IN A RARE BIOME Color: " .. waterColor)
             end
         else
             sendDiscordMessage(Whatplayer.Name .. "Might have found a rare biome rechecking" .. waterColor)
@@ -101,7 +101,7 @@ function detectBiome()
         for _, boss in ipairs(BiomeBosses) do
             local boss = game:GetService("Workspace"):FindFirstChild(boss.name)
             if boss then
-                sendDiscordMessage(Whatplayer.Name .. ":" .. bossInfo.emoji .. "🏃‍♂️")
+                sendDiscordMessage(Whatplayer.Name .. ":" .. boss.emoji .. "🏃‍♂️")
                 game:Shutdown()
                 return
             end
