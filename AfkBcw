@@ -1,7 +1,7 @@
 -- Define the Discord webhook URL
 local discordWebhookURL = "https://discord.com/api/webhooks/1252188568097656932/YqTUBeqWy1ZZUIVHazSohI8FHCdsLJlByyQpeTpPhxBRwyH6kawyS7Td-F3X7aybdgJF"
 
--- player name
+-- Player name
 local Whatplayer = game.Players.LocalPlayer
 
 -- Define the biome information
@@ -17,9 +17,17 @@ local biomeData = {
 }
 
 -- Define the list of possible bosses
-local BiomeBosses = {"Unknown Machine", "Archmage", "The Fallen", "Steve", "The Ripper", "The Paladin", "The Controller"}
+local BiomeBosses = {
+    {name = "Unknown Machine", emoji = "🤖"},
+    {name = "Archmage", emoji = "🧙‍♂️"},
+    {name = "The Fallen", emoji = "🥷"},
+    {name = "Steve", emoji = "🧑‍🌾"},
+    {name = "The Ripper", emoji = "🔪"},
+    {name = "The Paladin", emoji = "🛠️"},
+    {name = "The Controller", emoji = "🎮"},
+}
 
--- Double check if its really a rare biome
+-- Double check if it's really a rare biome
 local doublecheck = 0
 
 -- Function to send a message to the Discord webhook
@@ -43,7 +51,7 @@ local WhatSky, normalSky = pcall(function()
     return game:GetService("Lighting").NormalSky
 end)
 
--- rejoin things
+-- Rejoin things
 local ts = game:GetService("TeleportService")
 local p = game:GetService("Players").LocalPlayer
 
@@ -70,7 +78,7 @@ function detectBiome()
                             game:Shutdown()
                         end
                     else
-                        sendDiscordMessage(Whatplayer.Name .. " Got: " .. biomeInfo.name .. " leaving")
+                        sendDiscordMessage(Whatplayer.Name .. ":" .. biomeInfo.emoji .. "🏃‍♂️")
                         game:Shutdown()
                         return
                     end
@@ -80,32 +88,32 @@ function detectBiome()
         sendDiscordMessage(Whatplayer.Name .. "Might have found a rare biome rechecking" .. waterColor)
         doublecheck = doublecheck + 1
         if (doublecheck >= 2) then
-            sendDiscordMessage("Rare Biome Found By:'" .. Whatplayer.Name .. "' Water Color: " .. waterColor .. " @here")
-            sendDiscordMessage("This double check thing is still new so if you didnt get a rare biome pls tell tim asap anyways 30 second cooldown untill this message will be sent again")
+            sendDiscordMessage("Rare Biome:" .. Whatplayer.Name .. " Color: " .. waterColor .. " @here")
+            sendDiscordMessage("This double check thing is still new so if you didn't get a rare biome, please tell Tim ASAP. 30-second cooldown until this message will be sent again.")
             wait(30)
         end
     else
         -- Check if there is a boss in the list
         for _, boss in ipairs(BiomeBosses) do
-            local boss = game:GetService("Workspace"):FindFirstChild(boss)
+            local boss = game:GetService("Workspace"):FindFirstChild(boss.name)
             if boss then
-                sendDiscordMessage(Whatplayer.Name .. " Found Boss: " .. boss.Name .. " leaving")
+                sendDiscordMessage(Whatplayer.Name .. " Found Boss: " .. boss.Name .. "🏃‍♂️")
                 game:Shutdown()
                 return
             end
         end
-        sendDiscordMessage("Unknown Boss")
+        sendDiscordMessage(Whatplayer.Name .. ":🤖???")
     end
 end
 
-sendDiscordMessage(Whatplayer.Name .. " Has Rejoined")
+sendDiscordMessage(Whatplayer.Name .. ":♻️")
 
 while true do
     detectBiome()
-    for _, boss in ipairs(BiomeBosses) do
-        local boss = game:GetService("Workspace"):FindFirstChild(boss)
+    for _, bossInfo in ipairs(BiomeBosses) do
+        local boss = game:GetService("Workspace"):FindFirstChild(bossInfo.name)
         if boss then
-            sendDiscordMessage(Whatplayer.Name .. " Found Boss: " .. boss.Name .. " leaving")
+            sendDiscordMessage(Whatplayer.Name .. ":" .. bossInfo.emoji .. "🏃‍♂️")
             game:Shutdown()
         end
     end
