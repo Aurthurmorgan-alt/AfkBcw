@@ -97,7 +97,7 @@ function detectBiome()
         for _, boss in ipairs(BiomeBosses) do
             local boss = game:GetService("Workspace"):FindFirstChild(boss.name)
             if boss then
-                sendDiscordMessage(Whatplayer.Name .. " Found Boss: " .. boss.Name .. "🏃‍♂️")
+                sendDiscordMessage(Whatplayer.Name .. ":" .. bossInfo.emoji .. "🏃‍♂️")
                 game:Shutdown()
                 return
             end
