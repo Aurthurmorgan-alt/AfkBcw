@@ -19,6 +19,9 @@ local biomeData = {
 -- Define the list of possible bosses
 local BiomeBosses = {"Unknown Machine", "Archmage", "The Fallen", "Steve", "The Ripper", "The Paladin", "The Controller"}
 
+-- Double check if its really a rare biome
+local doublecheck = 0
+
 -- Function to send a message to the Discord webhook
 local function sendDiscordMessage(message)
     local HttpService = game:GetService("HttpService")
@@ -74,9 +77,12 @@ function detectBiome()
                 end
             end
         end
-
-        sendDiscordMessage("Rare Biome Found By:'" .. Whatplayer.Name .. "' Water Color: " .. waterColor .. " @here")
-        wait(10)
+        doublecheck = doublecheck + 1
+        if (doublecheck >= 2) then
+            sendDiscordMessage("Rare Biome Found By:'" .. Whatplayer.Name .. "' Water Color: " .. waterColor .. " @here")
+            sendDiscordMessage("This double check thing is still new so if you didnt get a rare biome pls tell tim asap anyways 30 second cooldown untill this message will be sent again")
+            wait(30)
+        end
     else
         -- Check if there is a boss in the list
         for _, boss in ipairs(BiomeBosses) do
