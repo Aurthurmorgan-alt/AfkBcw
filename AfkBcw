@@ -94,7 +94,7 @@ function detectBiome()
                 sendDiscordMessage(Whatplayer.Name .. " is in rare biome Color: " .. waterColor)
             end
         else
-            sendDiscordMessage(Whatplayer.Name .. " Might have found a rare biome rechecking " .. waterColor)
+            sendDiscordMessage(Whatplayer.Name .. "???: " .. waterColor)
         end
     else
         -- Check if there is a boss in the list
