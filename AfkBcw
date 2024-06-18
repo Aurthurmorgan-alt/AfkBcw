@@ -85,12 +85,12 @@ function detectBiome()
                 end
             end
         end
-        sendDiscordMessage(Whatplayer.Name .. "Might have found a rare biome rechecking" .. waterColor)
         doublecheck = doublecheck + 1
         if (doublecheck >= 2) then
             sendDiscordMessage("Rare Biome:" .. Whatplayer.Name .. " Color: " .. waterColor .. " @here")
-            sendDiscordMessage("This double check thing is still new so if you didn't get a rare biome, please tell Tim ASAP. 30-second cooldown until this message will be sent again.")
-            wait(30)
+            wait(120)
+        else
+            sendDiscordMessage(Whatplayer.Name .. "Might have found a rare biome rechecking" .. waterColor)
         end
     else
         -- Check if there is a boss in the list
